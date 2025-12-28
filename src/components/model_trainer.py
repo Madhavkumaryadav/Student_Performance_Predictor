@@ -21,6 +21,8 @@ from src.logger import logging
 from src.utils import save_object
 from src.utils import evaluate_model
 
+from src.hyperparameter import model_param
+
 
 
 @dataclass 
@@ -43,30 +45,27 @@ class ModelTrainer:
                 test_arry[:,-1]
             )
                 
-            models={
-                'Random Forest ':RandomForestRegressor(),
-                'Decision Tree ':DecisionTreeRegressor(),
-                'Gradient Boosting ':GradientBoostingRegressor(),
-                'Linear Regression ':LinearRegression(),
-                'K-Neighbors classifier ':KNeighborsRegressor(),
-                'XGB Classifier ':XGBRegressor(),
-                'CatBoosting Classifier ':CatBoostRegressor(),
-                'AdaBoost Classifier':AdaBoostRegressor()
-            }
+            models=model_param.get_models()
+            params=model_param.get_param()
+            
                 
-            model_report: dict=evaluate_model(x_train=x_train,y_train=y_train,x_test=x_test,y_test=y_test,
-                                            models=models) # type: ignore
+            model_report: dict=evaluate_model(
+                x_train=x_train,
+                y_train=y_train,
+                x_test=x_test,
+                y_test=y_test,
+                models=models,
+                params=params      
+            )
 
-            # To get best model score from dict 
-            best_model_score=max(sorted(model_report.values()))
-                
-            # To get best model name from dict 
-                
-            best_model_name=list(model_report.keys())[
-                list(model_report.values()).index(best_model_score)
-            ]
-                
-            best_model=models[best_model_name]
+            # Best model name (based on highest score)
+            best_model_name = max(model_report, key=model_report.get) # type: ignore
+
+            # Best model score
+            best_model_score = model_report[best_model_name]
+
+            # Best model object
+            best_model = models[best_model_name]
                 
             if best_model_score<0.6:
                 raise CustomException("Noe best model Found " , sys)
