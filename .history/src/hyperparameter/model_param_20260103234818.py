@@ -74,4 +74,12 @@ def get_param():
         'n_estimators':[8,16,32,64,128,256]
     }
     }
+<<<<<<< HEAD
     return params
+=======
+    return params
+
+
+p=get_param()
+print(p)
+>>>>>>> c63286c (Hyperparameter tuning)
