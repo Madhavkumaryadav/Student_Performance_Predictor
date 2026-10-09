@@ -11,4 +11,4 @@ RUN apt-get update -y \
 RUN python -m pip install --upgrade pip \
     && pip install --default-timeout=1000 --no-cache-dir -r requirements.txt
 
-CMD ["python3", "app.py"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-10000} app:app"]

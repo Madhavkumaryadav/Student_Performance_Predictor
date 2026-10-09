@@ -3,6 +3,7 @@ numpy
 seaborn
 matplotlib
 Flask 
+gunicorn
 
 scikit-learn==1.9.0
 catboost
