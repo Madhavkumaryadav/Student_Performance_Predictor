@@ -12,7 +12,11 @@ class PredictPipeline:
     
     def predict(self,features):
         try:
-        
+            # ## docker path working path 
+            # model_path='artifacts/model.pkl'
+            # preprocessor_path='artifacts/preprocessor.pkl'
+
+            ## vs code working path             
             model_path='artifacts\\model.pkl'
             preprocessor_path='artifacts\\preprocessor.pkl'
             

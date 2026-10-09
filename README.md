@@ -1,6 +1,6 @@
 #### END TO END DATA SCIENCE PROJECT #### 
 
-# 🧠 ML_Project_1 — Student Performance Prediction Web App
+# Student Performance Prediction Web App
 
 This is an **end-to-end Machine Learning web application** that predicts a student’s **math score** based on demographic and academic features like gender, race/ethnicity, parental education, lunch type, test preparation course status, and reading & writing scores.
 
